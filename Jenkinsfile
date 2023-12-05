@@ -42,16 +42,11 @@ pipeline {
        stage('SonarQube Analysis') {
     steps {
         script {
-            def pomPath = sh(script: 'find . -name pom.xml', returnStdout: true).trim()
-            if (pomPath.isEmpty()) {
-                error 'No pom.xml found in the workspace.'
-            }
-
-            echo "Found pom.xml at: $pomPath"
-
-            // Run SonarQube analysis
-            sh "cd ${pomPath.parent} && mvn sonar:sonar"
-        }
+                    withSonarQubeEnv('sonar-server') {
+                        // Use sonar-scanner or sonarqube-scanner for Python analysis
+                        sh 'sonar-scanner'
+                    }
+                }
     }
 }
     }
