@@ -33,7 +33,7 @@ pipeline {
                 
                 script {
                     // Run the Flask app in a Docker container within the workspace directory
-                    sh 'docker run -d -p 5001:5001 sonarqube'
+                    sh 'docker run -d -p 5000:5000 sonarqube'
                 }
             
             }
